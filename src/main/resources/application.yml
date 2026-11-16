@@ -1,0 +1,34 @@
+# 개발용 기본 설정. 내 컴퓨터에서는 메모리 DB(H2)로 바로 실행된다
+spring:
+  application:
+    name: teumta-server
+  datasource:
+    # PostgreSQL 문법으로 동작하게 해서, 배포(PostgreSQL)와 차이를 줄인다
+    url: jdbc:h2:mem:teumta;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password: ""
+  jpa:
+    # 화면(응답)을 만드는 동안 DB 연결을 붙잡지 않는다. 필요한 데이터는 서비스 안에서 다 읽는다
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+
+server:
+  port: 8080
+  shutdown: graceful
+  error:
+    # 오류 응답에 내부 코드 위치(스택 트레이스)를 보내지 않는다
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 서버가 살아 있는지 확인하는 주소(/actuator/health)만 연다
+        include: health
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

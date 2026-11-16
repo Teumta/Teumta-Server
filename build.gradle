@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.teumta'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0'
 description = 'Teumta server'
 
 java {
@@ -19,11 +19,11 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-h2console'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.0'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
@@ -35,4 +35,13 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// 배포용 jar 이름을 고정한다. Dockerfile이 버전과 상관없이 같은 이름으로 찾는다
+tasks.named('bootJar') {
+	archiveFileName = 'teumta-server.jar'
+}
+
+tasks.named('jar') {
+	enabled = false
 }

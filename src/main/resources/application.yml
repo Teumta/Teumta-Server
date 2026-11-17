@@ -21,6 +21,10 @@ spring:
 server:
   port: 8080
   shutdown: graceful
+  # 시간표 응답(1MB 넘음)을 gzip으로 줄여 보낸다
+  compression:
+    enabled: true
+    mime-types: application/json
   error:
     # 오류 응답에 내부 코드 위치(스택 트레이스)를 보내지 않는다
     include-stacktrace: never

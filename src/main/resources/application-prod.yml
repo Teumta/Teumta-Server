@@ -18,3 +18,8 @@ springdoc:
     enabled: false
   api-docs:
     enabled: false
+
+teumta:
+  jwt:
+    # 값이 없으면 서버가 켜지지 않는다(개발용 키로 배포되는 일을 막는다)
+    secret: ${JWT_SECRET}

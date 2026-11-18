@@ -49,3 +49,9 @@ teumta:
   timetable:
     # 시드 시간표를 받은 날. 시간표 파일을 바꾸면 같이 바꾼다
     base-date: 2026-11-06
+  jwt:
+    # 개발용 서명 키(Base64, 32바이트). 배포 서버는 .env의 JWT_SECRET을 쓴다(application-prod.yml)
+    secret: dGV1bXRhLWxvY2FsLWRldmVsb3BtZW50LW9ubHkta2V5IQ==
+    # access token은 짧게(새어 나가도 30분 뒤 못 쓴다), refresh token은 길게(2주 동안 다시 로그인하지 않는다)
+    access-token-ttl: 30m
+    refresh-token-ttl: 14d

@@ -1,12 +1,20 @@
 # 틈타 서버 (Teumta-Server)
 
-틈타 앱이 쓰는 1호선 역·시간표 API 서버다. Spring Boot 4, Java 25.
+틈타 앱이 쓰는 1호선 역·시간표와 회원 API 서버다. Spring Boot 4, Java 25.
 
-| API | 설명 |
-| --- | --- |
-| `GET /api/stations` | 역 102개 |
-| `GET /api/trains?dayType=WEEKDAY` (또는 `HOLIDAY`) | 평일·휴일 열차 전체 |
-| `GET /actuator/health/readiness` | 요청을 받을 준비가 됐는지 (시드를 넣는 동안은 503) |
+| API | 로그인 | 설명 |
+| --- | --- | --- |
+| `GET /api/stations` | 필요 없음 | 역 102개 |
+| `GET /api/trains?dayType=WEEKDAY` (또는 `HOLIDAY`) | 필요 없음 | 평일·휴일 열차 전체 |
+| `POST /api/auth/signup` | 필요 없음 | 회원가입. 가입하면 바로 토큰을 준다 |
+| `POST /api/auth/login` | 필요 없음 | 로그인. access token(30분)과 refresh token(14일) |
+| `POST /api/auth/refresh` | 필요 없음 | 토큰 갱신. 쓴 refresh token은 다시 못 쓴다 |
+| `POST /api/auth/logout` | 필요 없음 | 이 기기의 refresh token을 지운다 |
+| `GET /api/members/me` | 필요 | 내 정보 |
+| `DELETE /api/members/me` | 필요 | 회원 탈퇴 |
+| `GET /actuator/health/readiness` | 필요 없음 | 요청을 받을 준비가 됐는지 (시드를 넣는 동안은 503) |
+
+로그인이 필요한 API는 `Authorization: Bearer <access token>` 헤더를 붙인다. 오류는 모두 `{code, message, fieldErrors}` 모양이다.
 
 ## 내 컴퓨터에서 실행
 
@@ -68,7 +76,7 @@
 6. **비밀값 넣고 띄우기** (EC2에서)
    ```bash
    cd ~/teumta
-   cp .env.example .env && nano .env   # DOMAIN, DATABASE_PASSWORD를 바꾼다
+   cp .env.example .env && nano .env   # DOMAIN, DATABASE_PASSWORD, JWT_SECRET을 바꾼다
    docker compose up -d --build
    ```
 7. **확인**: `https://<DOMAIN>/api/stations`가 역 102개를 돌려주면 된다
@@ -93,5 +101,6 @@ docker compose down            # 내리기 (데이터 볼륨은 남는다)
 
 - 시드는 DB가 비어 있을 때만 들어간다. 시간표를 새로 넣으려면 DB를 비워야 한다(`docker compose down --volumes`는 DB 데이터를 지우니 주의).
 - jar는 내 컴퓨터에서 만든다. EC2(1GB)에서 Gradle로 빌드하면 메모리가 모자란다.
-- `.env`에는 DB 비밀번호가 있어서 저장소에 올리지 않는다(`.gitignore`).
+- `.env`에는 DB 비밀번호와 JWT 서명 키가 있어서 저장소에 올리지 않는다(`.gitignore`).
+- `prod` 프로필은 `JWT_SECRET`이 없으면 켜지지 않는다. 개발용 키로 배포되는 일을 막는다.
 - 서버에 접속하면 접속 기록(IP)이 남는다. 앱 출시 전에 개인정보처리방침을 맞춘다.

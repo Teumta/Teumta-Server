@@ -98,6 +98,25 @@ docker compose logs -f app     # 서버 로그
 docker compose down            # 내리기 (데이터 볼륨은 남는다)
 ```
 
+### 메일로 계정 삭제 요청이 오면
+
+앱을 쓸 수 없는 사람은 [계정 삭제 안내](https://teumta.github.io/Teumta-Server/delete-account.html)(`docs/delete-account.html`)를 보고 메일로 요청한다. Play 정책상 이 웹 페이지가 있어야 하고, 개인정보처리방침에 10일 안에 처리한다고 약속했다.
+
+1. **본인 확인**: 보낸 주소가 가입한 이메일과 같은지 본다. 다르면 가입한 주소로 확인 메일을 보내고 답을 받은 뒤에 지운다.
+2. **지우기**: 앱의 탈퇴(`DELETE /api/members/me`)와 같은 순서로 로그인 정보부터 지운다. 이메일은 소문자로 저장돼 있다.
+   ```bash
+   ssh teumta
+   cd ~/teumta && docker compose exec db sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+   ```
+   ```sql
+   BEGIN;
+   DELETE FROM refresh_token WHERE member_id = (SELECT id FROM member WHERE email = '가입한 이메일(소문자)');
+   DELETE FROM member WHERE email = '가입한 이메일(소문자)';
+   -- 두 번째 DELETE가 "DELETE 1"이면 COMMIT, 0이면 없는 계정이므로 ROLLBACK
+   COMMIT;
+   ```
+3. **답장**: 지웠다고 알린다. 요청 메일과 답장은 처리가 끝나고 1년 안에 지운다(개인정보처리방침 7장).
+
 ### 알아 둘 것
 
 - 시드는 DB가 비어 있을 때만 들어간다. 시간표를 새로 넣으려면 DB를 비워야 한다(`docker compose down --volumes`는 DB 데이터를 지우니 주의).

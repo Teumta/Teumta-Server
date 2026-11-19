@@ -1,3 +1,20 @@
+# 서버가 받은 요청을 기록하는 방법. 개인정보처리방침에 "IP 주소를 저장하지 않는다"고 약속해서
+# 오류 기록에서도 IP와 요청 헤더를 지운다(Caddy는 요청 기록(access log)을 켜지 않으면 남기지 않는다)
+{
+	log {
+		format filter {
+			wrap json
+			fields {
+				request>remote_ip delete
+				request>remote_port delete
+				request>client_ip delete
+				request>headers delete
+				remote delete
+			}
+		}
+	}
+}
+
 # .env의 DOMAIN(예: teumta.duckdns.org)으로 들어온 요청을 서버(app:8080)로 넘긴다.
 # 도메인만 적으면 Caddy가 HTTPS 인증서를 자동으로 받고, http로 오면 https로 돌려보낸다
 {$DOMAIN} {

@@ -1,0 +1,57 @@
+# 개발용 기본 설정. 내 컴퓨터에서는 메모리 DB(H2)로 바로 실행된다
+spring:
+  application:
+    name: teumta-server
+  datasource:
+    # PostgreSQL 문법으로 동작하게 해서, 배포(PostgreSQL)와 차이를 줄인다
+    url: jdbc:h2:mem:teumta;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password: ""
+  jpa:
+    # 화면(응답)을 만드는 동안 DB 연결을 붙잡지 않는다. 필요한 데이터는 서비스 안에서 다 읽는다
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        # 시드의 정차역 5만 개를 한 줄씩 보내지 않고, 같은 INSERT끼리 최대 500개씩 묶어 보낸다
+        jdbc:
+          batch_size: 500
+
+server:
+  port: 8080
+  shutdown: graceful
+  # 시간표 응답(1MB 넘음)을 gzip으로 줄여 보낸다
+  compression:
+    enabled: true
+    mime-types: application/json
+  error:
+    # 오류 응답에 내부 코드 위치(스택 트레이스)를 보내지 않는다
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 서버가 살아 있는지 확인하는 주소(/actuator/health)만 연다
+        include: health
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+teumta:
+  seed:
+    stations: classpath:seed/stations.json
+    timetable: classpath:seed/timetable-2026-11-06.json
+  timetable:
+    # 시드 시간표를 받은 날. 시간표 파일을 바꾸면 같이 바꾼다
+    base-date: 2026-11-06
+  jwt:
+    # 개발용 서명 키(Base64, 32바이트). 배포 서버는 .env의 JWT_SECRET을 쓴다(application-prod.yml)
+    secret: dGV1bXRhLWxvY2FsLWRldmVsb3BtZW50LW9ubHkta2V5IQ==
+    # access token은 짧게(새어 나가도 30분 뒤 못 쓴다), refresh token은 길게(2주 동안 다시 로그인하지 않는다)
+    access-token-ttl: 30m
+    refresh-token-ttl: 14d

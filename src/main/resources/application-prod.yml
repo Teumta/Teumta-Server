@@ -1,0 +1,25 @@
+# 배포(EC2)에서 SPRING_PROFILES_ACTIVE=prod 로 켠다. 비밀번호 같은 값은 서버의 .env에만 두고 저장소에 올리지 않는다
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  # 앞단(Caddy)이 HTTPS를 처리하고 넘겨 줄 때, 원래 주소(https)를 알아듣게 한다
+  forward-headers-strategy: framework
+
+springdoc:
+  # 배포 서버에서는 API 문서 화면을 닫는다
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false
+
+teumta:
+  jwt:
+    # 값이 없으면 서버가 켜지지 않는다(개발용 키로 배포되는 일을 막는다)
+    secret: ${JWT_SECRET}

@@ -11,6 +11,8 @@ public enum ErrorCode {
     // 앱은 이 코드를 받으면 다시 로그인 화면으로 보낸다
     INVALID_REFRESH_TOKEN(HttpStatus.UNAUTHORIZED, "다시 로그인해 주세요."),
     UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "로그인이 필요해요."),
+    UNKNOWN_STATION(HttpStatus.BAD_REQUEST, "없는 역이에요."),
+    SAME_HOME_AND_WORK(HttpStatus.BAD_REQUEST, "집역과 회사역을 다르게 골라 주세요."),
     INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "잠시 후 다시 시도해 주세요.");
 
     private final HttpStatus status;

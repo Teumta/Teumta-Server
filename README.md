@@ -10,7 +10,8 @@
 | `POST /api/auth/login` | 필요 없음 | 로그인. access token(30분)과 refresh token(14일) |
 | `POST /api/auth/refresh` | 필요 없음 | 토큰 갱신. 쓴 refresh token은 다시 못 쓴다 |
 | `POST /api/auth/logout` | 필요 없음 | 이 기기의 refresh token을 지운다 |
-| `GET /api/members/me` | 필요 | 내 정보 |
+| `GET /api/members/me` | 필요 | 내 정보(집역·회사역 ID 포함, 고르지 않았으면 null) |
+| `PUT /api/members/me/stations` | 필요 | 집역·회사역 저장. `{homeStationId, workStationId}`, null이면 지운다 |
 | `DELETE /api/members/me` | 필요 | 회원 탈퇴 |
 | `GET /actuator/health/readiness` | 필요 없음 | 요청을 받을 준비가 됐는지 (시드를 넣는 동안은 503) |
 

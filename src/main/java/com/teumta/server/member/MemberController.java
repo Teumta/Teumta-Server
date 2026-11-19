@@ -1,10 +1,13 @@
 package com.teumta.server.member;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +25,12 @@ public class MemberController {
     @GetMapping
     public MemberResponse getMe(@AuthenticationPrincipal Jwt jwt) {
         return memberService.getMe(Long.valueOf(jwt.getSubject()));
+    }
+
+    // 집역·회사역 저장. 바뀐 내 정보를 돌려준다
+    @PutMapping("/stations")
+    public MemberResponse updateStations(@AuthenticationPrincipal Jwt jwt, @Valid @RequestBody UpdateStationsRequest request) {
+        return memberService.updateStations(Long.valueOf(jwt.getSubject()), request);
     }
 
     @DeleteMapping

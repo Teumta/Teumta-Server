@@ -1,5 +1,6 @@
 package com.teumta.server.member;
 
+import com.teumta.server.station.Station;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -23,6 +24,16 @@ public class Member {
     @Column(nullable = false)
     private Instant createdAt;
 
+    // 집역·회사역. 고르지 않았으면 null. 역 표를 외래 키로 가리켜서 없는 역은 저장되지 않는다.
+    // LAZY: 회원을 읽을 때 역까지 읽지 않는다(응답에는 역 ID만 쓴다)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "home_station_id")
+    private Station homeStation;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "work_station_id")
+    private Station workStation;
+
     protected Member() {}
 
     public Member(String email, String passwordHash, Instant createdAt) {
@@ -45,5 +56,19 @@ public class Member {
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public Station getHomeStation() {
+        return homeStation;
+    }
+
+    public Station getWorkStation() {
+        return workStation;
+    }
+
+    // 집역·회사역을 함께 바꾼다. 트랜잭션 안에서 부르면 끝날 때 UPDATE가 나간다(변경 감지)
+    public void changeStations(Station homeStation, Station workStation) {
+        this.homeStation = homeStation;
+        this.workStation = workStation;
     }
 }

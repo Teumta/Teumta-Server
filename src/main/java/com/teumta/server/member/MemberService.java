@@ -29,18 +29,18 @@ public class MemberService {
                 .orElseThrow(() -> new BusinessException(ErrorCode.UNAUTHORIZED));
     }
 
-    // 집역·회사역 저장. 둘을 함께 받아 통째로 바꾼다(PUT). null이면 그 역을 지운다
+    // 자주 쓰는 두 역 저장. 둘을 함께 받아 통째로 바꾼다(PUT). null이면 그 역을 지운다
     @Transactional
     public MemberResponse updateStations(Long memberId, UpdateStationsRequest request) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.UNAUTHORIZED));
-        Station home = findStation(request.homeStationId());
-        Station work = findStation(request.workStationId());
-        // 집과 회사가 같은 역이면 오갈 경로가 없다
-        if (home != null && work != null && home.getId().equals(work.getId())) {
-            throw new BusinessException(ErrorCode.SAME_HOME_AND_WORK);
+        Station origin = findStation(request.originStationId());
+        Station destination = findStation(request.destinationStationId());
+        // 출발역과 도착역이 같으면 오갈 경로가 없다
+        if (origin != null && destination != null && origin.getId().equals(destination.getId())) {
+            throw new BusinessException(ErrorCode.SAME_STATIONS);
         }
-        member.changeStations(home, work);
+        member.changeStations(origin, destination);
         return MemberResponse.from(member);
     }
 
@@ -52,7 +52,7 @@ public class MemberService {
                 .orElseThrow(() -> new BusinessException(ErrorCode.UNKNOWN_STATION));
     }
 
-    // 탈퇴: 회원(집역·회사역 포함)과 모든 기기의 refresh token을 지운다. 바로 다시 같은 이메일로 가입할 수 있다
+    // 탈퇴: 회원(저장한 두 역 포함)과 모든 기기의 refresh token을 지운다. 바로 다시 같은 이메일로 가입할 수 있다
     @Transactional
     public void withdraw(Long memberId) {
         // refresh token이 회원을 가리키므로(외래 키) 토큰부터 지운다

@@ -27,7 +27,7 @@ public class MemberController {
         return memberService.getMe(Long.valueOf(jwt.getSubject()));
     }
 
-    // 집역·회사역 저장. 바뀐 내 정보를 돌려준다
+    // 자주 쓰는 두 역 저장. 바뀐 내 정보를 돌려준다
     @PutMapping("/stations")
     public MemberResponse updateStations(@AuthenticationPrincipal Jwt jwt, @Valid @RequestBody UpdateStationsRequest request) {
         return memberService.updateStations(Long.valueOf(jwt.getSubject()), request);

@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | `GET /api/stations` | 필요 없음 | 역 102개 |
 | `GET /api/trains?dayType=WEEKDAY` (또는 `HOLIDAY`) | 필요 없음 | 평일·휴일 열차 전체 |
+| `GET /api/realtime/arrivals?stationId=…&towardStationId=…` | 필요 없음 | 탈 역으로 오는 열차(서울시 실시간 열차 위치). `towardStationId`(내릴 역)를 주면 그 역까지 가는 열차만. 볼 수 없으면 503 `REALTIME_UNAVAILABLE` |
 | `POST /api/auth/signup` | 필요 없음 | 회원가입. 가입하면 바로 토큰을 준다 |
 | `POST /api/auth/login` | 필요 없음 | 로그인. access token(30분)과 refresh token(14일) |
 | `POST /api/auth/refresh` | 필요 없음 | 토큰 갱신. 쓴 refresh token은 다시 못 쓴다 |
@@ -77,7 +78,7 @@
 6. **비밀값 넣고 띄우기** (EC2에서)
    ```bash
    cd ~/teumta
-   cp .env.example .env && nano .env   # DOMAIN, DATABASE_PASSWORD, JWT_SECRET을 바꾼다
+   cp .env.example .env && nano .env   # DOMAIN, DATABASE_PASSWORD, JWT_SECRET, SEOUL_SUBWAY_API_KEY를 채운다
    docker compose up -d --build
    ```
 7. **확인**: `https://<DOMAIN>/api/stations`가 역 102개를 돌려주면 된다
@@ -121,6 +122,8 @@ docker compose down            # 내리기 (데이터 볼륨은 남는다)
 
 - 시드는 DB가 비어 있을 때만 들어간다. 시간표를 새로 넣으려면 DB를 비워야 한다(`docker compose down --volumes`는 DB 데이터를 지우니 주의).
 - jar는 내 컴퓨터에서 만든다. EC2(1GB)에서 Gradle로 빌드하면 메모리가 모자란다.
-- `.env`에는 DB 비밀번호와 JWT 서명 키가 있어서 저장소에 올리지 않는다(`.gitignore`).
+- `.env`에는 DB 비밀번호와 JWT 서명 키, 서울시 인증키가 있어서 저장소에 올리지 않는다(`.gitignore`).
+- 실시간(서울 열린데이터광장 열차 위치)은 하루 1,000번까지다. 서버는 1호선 전체 위치를 90초에 한 번만 받아 모든 역에 같이 쓰고, 하루 950번에 닿으면 그날은 묻지 않는다(503). `SEOUL_SUBWAY_API_KEY`가 비어 있으면 실시간만 꺼지고 나머지는 그대로 동작한다.
+- 서울시 위치 정보에는 기점에서 출발을 기다리는 열차가 빠질 때가 있다. 광명은 셔틀이 금천구청까지 온 것까지만, 서동탄은 서 있는 열차가 보이는 동안만 나온다.
 - `prod` 프로필은 `JWT_SECRET`이 없으면 켜지지 않는다. 개발용 키로 배포되는 일을 막는다.
 - 서버는 접속한 사람의 IP를 남기지 않는다. Caddy는 요청 기록(access log)을 켜지 않았고, 오류 기록에서도 IP와 요청 헤더를 지운다(`Caddyfile`). 개인정보처리방침에 약속한 내용이라 로그 설정을 바꾸면 방침도 함께 고친다.

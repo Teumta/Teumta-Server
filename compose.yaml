@@ -33,6 +33,8 @@ services:
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
+      # 없으면 빈 값으로 켜지고, 실시간 도착만 꺼진다
+      SEOUL_SUBWAY_API_KEY: ${SEOUL_SUBWAY_API_KEY:-}
     healthcheck:
       # 시드를 다 넣고 요청을 받을 준비가 됐는지 (/actuator/health/readiness가 200이면 준비됨)
       test: ["CMD-SHELL", "curl -fs http://localhost:8080/actuator/health/readiness || exit 1"]

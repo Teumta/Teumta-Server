@@ -1,0 +1,820 @@
+{
+ "errorMessage": {
+  "status": 200,
+  "code": "INFO-000",
+  "message": "정상 처리되었습니다.",
+  "total": 81
+ },
+ "realtimePositionList": [
+  {
+   "subwayId": "1001",
+   "statnNm": "병점",
+   "trainNo": "0479",
+   "recptnDt": "2026-11-21 19:23:35",
+   "updnLine": "1",
+   "statnTnm": "서동탄",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "안양",
+   "trainNo": "1947",
+   "recptnDt": "2026-11-21 19:24:39",
+   "updnLine": "1",
+   "statnTnm": "신창",
+   "trainSttus": "1",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "시청",
+   "trainNo": "0487",
+   "recptnDt": "2026-11-21 19:24:49",
+   "updnLine": "1",
+   "statnTnm": "서동탄",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "직산",
+   "trainNo": "0691",
+   "recptnDt": "2026-11-21 19:24:53",
+   "updnLine": "1",
+   "statnTnm": "천안",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "두정",
+   "trainNo": "0692",
+   "recptnDt": "2026-11-21 19:25:04",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "가산디지털단지",
+   "trainNo": "0476",
+   "recptnDt": "2026-11-21 19:25:06",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "금정",
+   "trainNo": "0483",
+   "recptnDt": "2026-11-21 19:25:19",
+   "updnLine": "1",
+   "statnTnm": "서동탄",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "독산",
+   "trainNo": "0682",
+   "recptnDt": "2026-11-21 19:25:28",
+   "updnLine": "0",
+   "statnTnm": "청량리",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "노량진",
+   "trainNo": "0156",
+   "recptnDt": "2026-11-21 19:25:34",
+   "updnLine": "0",
+   "statnTnm": "양주",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "신창",
+   "trainNo": "0687",
+   "recptnDt": "2026-11-21 19:25:40",
+   "updnLine": "1",
+   "statnTnm": "신창",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "종각",
+   "trainNo": "0171",
+   "recptnDt": "2026-11-21 19:25:41",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "구로",
+   "trainNo": "0680",
+   "recptnDt": "2026-11-21 19:25:47",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "남영",
+   "trainNo": "0474",
+   "recptnDt": "2026-11-21 19:25:55",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "신창",
+   "trainNo": "0754",
+   "recptnDt": "2026-11-21 19:26:05",
+   "updnLine": "0",
+   "statnTnm": "병점",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "석수",
+   "trainNo": "0701",
+   "recptnDt": "2026-11-21 19:26:07",
+   "updnLine": "1",
+   "statnTnm": "신창",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "청량리",
+   "trainNo": "0813",
+   "recptnDt": "2026-11-21 19:26:10",
+   "updnLine": "1",
+   "statnTnm": "구로",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "제기동",
+   "trainNo": "0814",
+   "recptnDt": "2026-11-21 19:26:13",
+   "updnLine": "0",
+   "statnTnm": "의정부",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "백운",
+   "trainNo": "0157",
+   "recptnDt": "2026-11-21 19:26:18",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "성환",
+   "trainNo": "0693",
+   "recptnDt": "2026-11-21 19:26:19",
+   "updnLine": "1",
+   "statnTnm": "천안",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "소사",
+   "trainNo": "0159",
+   "recptnDt": "2026-11-21 19:26:28",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "서정리",
+   "trainNo": "0697",
+   "recptnDt": "2026-11-21 19:26:31",
+   "updnLine": "1",
+   "statnTnm": "천안",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "송내",
+   "trainNo": "1115",
+   "recptnDt": "2026-11-21 19:26:31",
+   "updnLine": "1",
+   "statnTnm": "동인천",
+   "trainSttus": "1",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "광운대",
+   "trainNo": "0175",
+   "recptnDt": "2026-11-21 19:26:33",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "녹천",
+   "trainNo": "0177",
+   "recptnDt": "2026-11-21 19:26:34",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "용산",
+   "trainNo": "1942",
+   "recptnDt": "2026-11-21 19:26:35",
+   "updnLine": "0",
+   "statnTnm": "청량리",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "대방",
+   "trainNo": "1949",
+   "recptnDt": "2026-11-21 19:26:38",
+   "updnLine": "1",
+   "statnTnm": "천안",
+   "trainSttus": "1",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "석수",
+   "trainNo": "0684",
+   "recptnDt": "2026-11-21 19:26:39",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "가능",
+   "trainNo": "0812",
+   "recptnDt": "2026-11-21 19:26:42",
+   "updnLine": "0",
+   "statnTnm": "동두천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "용산",
+   "trainNo": "1114",
+   "recptnDt": "2026-11-21 19:26:43",
+   "updnLine": "0",
+   "statnTnm": "용산",
+   "trainSttus": "1",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "동대문",
+   "trainNo": "0705",
+   "recptnDt": "2026-11-21 19:26:46",
+   "updnLine": "1",
+   "statnTnm": "신창",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "신설동",
+   "trainNo": "0152",
+   "recptnDt": "2026-11-21 19:26:48",
+   "updnLine": "0",
+   "statnTnm": "소요산",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "신설동",
+   "trainNo": "0173",
+   "recptnDt": "2026-11-21 19:26:56",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "천안",
+   "trainNo": "0694",
+   "recptnDt": "2026-11-21 19:27:02",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "영등포",
+   "trainNo": "0160",
+   "recptnDt": "2026-11-21 19:27:04",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "종로3가",
+   "trainNo": "0154",
+   "recptnDt": "2026-11-21 19:27:04",
+   "updnLine": "0",
+   "statnTnm": "양주",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "용산",
+   "trainNo": "1121",
+   "recptnDt": "2026-11-21 19:27:10",
+   "updnLine": "1",
+   "statnTnm": "동인천",
+   "trainSttus": "1",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "성균관대",
+   "trainNo": "0699",
+   "recptnDt": "2026-11-21 19:27:10",
+   "updnLine": "1",
+   "statnTnm": "천안",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "신설동",
+   "trainNo": "0152",
+   "recptnDt": "2026-11-21 19:27:11",
+   "updnLine": "0",
+   "statnTnm": "소요산",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "오산",
+   "trainNo": "0695",
+   "recptnDt": "2026-11-21 19:27:17",
+   "updnLine": "1",
+   "statnTnm": "신창",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "구로",
+   "trainNo": "0485",
+   "recptnDt": "2026-11-21 19:27:18",
+   "updnLine": "1",
+   "statnTnm": "서동탄",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "청량리",
+   "trainNo": "0813",
+   "recptnDt": "2026-11-21 19:27:19",
+   "updnLine": "1",
+   "statnTnm": "구로",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "양주",
+   "trainNo": "0183",
+   "recptnDt": "2026-11-21 19:27:19",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "동묘앞",
+   "trainNo": "0678",
+   "recptnDt": "2026-11-21 19:27:19",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "구일",
+   "trainNo": "0163",
+   "recptnDt": "2026-11-21 19:27:19",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "노량진",
+   "trainNo": "0703",
+   "recptnDt": "2026-11-21 19:27:20",
+   "updnLine": "1",
+   "statnTnm": "신창",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "신설동",
+   "trainNo": "0173",
+   "recptnDt": "2026-11-21 19:27:21",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "오류동",
+   "trainNo": "0161",
+   "recptnDt": "2026-11-21 19:27:22",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "역곡",
+   "trainNo": "0164",
+   "recptnDt": "2026-11-21 19:27:24",
+   "updnLine": "0",
+   "statnTnm": "소요산",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "월계",
+   "trainNo": "0148",
+   "recptnDt": "2026-11-21 19:27:29",
+   "updnLine": "0",
+   "statnTnm": "의정부",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "종로3가",
+   "trainNo": "0154",
+   "recptnDt": "2026-11-21 19:27:31",
+   "updnLine": "0",
+   "statnTnm": "양주",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "화서",
+   "trainNo": "0686",
+   "recptnDt": "2026-11-21 19:27:31",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "용산",
+   "trainNo": "0169",
+   "recptnDt": "2026-11-21 19:27:32",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "금천구청",
+   "trainNo": "7031",
+   "recptnDt": "2026-11-21 19:27:33",
+   "updnLine": "1",
+   "statnTnm": "광명",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "아산",
+   "trainNo": "1941",
+   "recptnDt": "2026-11-21 19:27:35",
+   "updnLine": "1",
+   "statnTnm": "신창",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "개봉",
+   "trainNo": "0162",
+   "recptnDt": "2026-11-21 19:27:35",
+   "updnLine": "0",
+   "statnTnm": "동두천",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "도화",
+   "trainNo": "0168",
+   "recptnDt": "2026-11-21 19:27:35",
+   "updnLine": "0",
+   "statnTnm": "의정부",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "역곡",
+   "trainNo": "1118",
+   "recptnDt": "2026-11-21 19:27:36",
+   "updnLine": "0",
+   "statnTnm": "용산",
+   "trainSttus": "0",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "신도림",
+   "trainNo": "0165",
+   "recptnDt": "2026-11-21 19:27:36",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "시청",
+   "trainNo": "0487",
+   "recptnDt": "2026-11-21 19:27:37",
+   "updnLine": "1",
+   "statnTnm": "서동탄",
+   "trainSttus": "2",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "신도림",
+   "trainNo": "1116",
+   "recptnDt": "2026-11-21 19:27:37",
+   "updnLine": "0",
+   "statnTnm": "용산",
+   "trainSttus": "1",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "성환",
+   "trainNo": "0690",
+   "recptnDt": "2026-11-21 19:27:38",
+   "updnLine": "0",
+   "statnTnm": "청량리",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "동암",
+   "trainNo": "1120",
+   "recptnDt": "2026-11-21 19:27:39",
+   "updnLine": "0",
+   "statnTnm": "용산",
+   "trainSttus": "0",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "영등포",
+   "trainNo": "7030",
+   "recptnDt": "2026-11-21 19:27:40",
+   "updnLine": "0",
+   "statnTnm": "영등포",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "지행",
+   "trainNo": "0140",
+   "recptnDt": "2026-11-21 19:27:45",
+   "updnLine": "0",
+   "statnTnm": "소요산",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "제기동",
+   "trainNo": "0814",
+   "recptnDt": "2026-11-21 19:27:46",
+   "updnLine": "0",
+   "statnTnm": "의정부",
+   "trainSttus": "2",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "의정부",
+   "trainNo": "0181",
+   "recptnDt": "2026-11-21 19:27:47",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "동묘앞",
+   "trainNo": "0678",
+   "recptnDt": "2026-11-21 19:27:47",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "종각",
+   "trainNo": "0171",
+   "recptnDt": "2026-11-21 19:27:48",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "2",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "노량진",
+   "trainNo": "1119",
+   "recptnDt": "2026-11-21 19:27:49",
+   "updnLine": "1",
+   "statnTnm": "동인천",
+   "trainSttus": "1",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "당정",
+   "trainNo": "0478",
+   "recptnDt": "2026-11-21 19:27:49",
+   "updnLine": "0",
+   "statnTnm": "동묘앞",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "도봉",
+   "trainNo": "0179",
+   "recptnDt": "2026-11-21 19:27:51",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "제물포",
+   "trainNo": "1113",
+   "recptnDt": "2026-11-21 19:27:51",
+   "updnLine": "1",
+   "statnTnm": "동인천",
+   "trainSttus": "0",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "제물포",
+   "trainNo": "0155",
+   "recptnDt": "2026-11-21 19:27:52",
+   "updnLine": "1",
+   "statnTnm": "인천",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "영등포",
+   "trainNo": "7033",
+   "recptnDt": "2026-11-21 19:27:54",
+   "updnLine": "1",
+   "statnTnm": "광명",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "도봉산",
+   "trainNo": "0972",
+   "recptnDt": "2026-11-21 19:27:56",
+   "updnLine": "0",
+   "statnTnm": "연천",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "외대앞",
+   "trainNo": "0707",
+   "recptnDt": "2026-11-21 19:27:57",
+   "updnLine": "1",
+   "statnTnm": "천안",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "세류",
+   "trainNo": "0480",
+   "recptnDt": "2026-11-21 19:27:57",
+   "updnLine": "0",
+   "statnTnm": "광운대",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "당정",
+   "trainNo": "0481",
+   "recptnDt": "2026-11-21 19:27:57",
+   "updnLine": "1",
+   "statnTnm": "서동탄",
+   "trainSttus": "1",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "노량진",
+   "trainNo": "0158",
+   "recptnDt": "2026-11-21 19:27:57",
+   "updnLine": "0",
+   "statnTnm": "연천",
+   "trainSttus": "0",
+   "directAt": "0"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "개봉",
+   "trainNo": "1117",
+   "recptnDt": "2026-11-21 19:28:00",
+   "updnLine": "1",
+   "statnTnm": "동인천",
+   "trainSttus": "0",
+   "directAt": "1"
+  },
+  {
+   "subwayId": "1001",
+   "statnNm": "동암",
+   "trainNo": "0166",
+   "recptnDt": "2026-11-21 19:28:01",
+   "updnLine": "0",
+   "statnTnm": "양주",
+   "trainSttus": "1",
+   "directAt": "0"
+  }
+ ]
+}

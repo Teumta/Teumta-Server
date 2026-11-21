@@ -46,6 +46,13 @@ teumta:
   seed:
     stations: classpath:seed/stations.json
     timetable: classpath:seed/timetable-2026-11-06.json
+  realtime:
+    # 서울 열린데이터광장 실시간 열차 위치. https를 지원하지 않아 http로 부른다
+    base-url: http://swopenapi.seoul.go.kr/api/subway
+    # 인증키는 .env의 SEOUL_SUBWAY_API_KEY에만 둔다. 비어 있으면 실시간 없이 동작한다(503)
+    api-key: ${SEOUL_SUBWAY_API_KEY:}
+    # 서울시 한도는 하루 1,000번. 여유를 두고 그 전에 멈춘다
+    daily-limit: 950
   timetable:
     # 시드 시간표를 받은 날. 시간표 파일을 바꾸면 같이 바꾼다
     base-date: 2026-11-06

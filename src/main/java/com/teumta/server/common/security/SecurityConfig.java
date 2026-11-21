@@ -35,6 +35,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         // 시간표는 로그인 없이 쓴다(계산은 로그인 없이 된다)
                         .requestMatchers(HttpMethod.GET, "/api/stations", "/api/trains").permitAll()
+                        // 실시간 도착도 로그인 없이 본다. 서버가 1분씩 모아 묻고 하루 한도를 지킨다
+                        .requestMatchers(HttpMethod.GET, "/api/realtime/arrivals").permitAll()
                         .requestMatchers("/actuator/health/**", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/error").permitAll()
                         .anyRequest().authenticated())
                 // Authorization: Bearer <access token> 을 읽어 서명·만료를 확인하는 필터를 켠다

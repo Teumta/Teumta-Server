@@ -13,6 +13,8 @@ public enum ErrorCode {
     UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "로그인이 필요해요."),
     UNKNOWN_STATION(HttpStatus.BAD_REQUEST, "없는 역이에요."),
     SAME_STATIONS(HttpStatus.BAD_REQUEST, "출발역과 도착역을 다르게 골라 주세요."),
+    // 인증키가 없거나, 서울시 API가 실패했거나, 하루 호출 한도에 닿았다. 앱은 실시간 줄만 숨긴다
+    REALTIME_UNAVAILABLE(HttpStatus.SERVICE_UNAVAILABLE, "실시간 도착 정보를 지금은 볼 수 없어요."),
     INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "잠시 후 다시 시도해 주세요.");
 
     private final HttpStatus status;

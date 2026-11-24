@@ -26,6 +26,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 // 탈 역으로 오는 1호선 열차. 서울시 열차 위치(1호선 전체)를 한 번 받아 모든 역의 답을 만든다.
 // 서울시 API는 하루 1,000번까지라
@@ -34,6 +35,8 @@ import java.util.Map;
 @Service
 public class RealtimeArrivalService {
     static final Duration CACHE_TTL = Duration.ofSeconds(90);
+    // 다른 요청이 서울시에서 받는 중일 때, 받은 지 이 시간 안의 지난 값은 기다리지 않고 준다
+    static final Duration SERVE_OLD_FOR = Duration.ofMinutes(2);
     // 받은 지 5분이 넘은 위치는 버린다. 서울시가 오래된 위치를 섞어 줄 때가 있다
     static final Duration STALE_AFTER = Duration.ofMinutes(5);
     static final ZoneId SEOUL = ZoneId.of("Asia/Seoul");
@@ -55,7 +58,7 @@ public class RealtimeArrivalService {
 
     private volatile RouteTree tree;
     private volatile Cached cached;
-    private final Object fetchLock = new Object();
+    private final ReentrantLock fetchLock = new ReentrantLock();
     private LocalDate callDate;
     private int callsToday;
 
@@ -173,8 +176,16 @@ public class RealtimeArrivalService {
         if (isFresh(current)) {
             return current;
         }
-        // 여러 사람이 동시에 물어도 서울시에는 한 번만 묻는다
-        synchronized (fetchLock) {
+        // 여러 사람이 동시에 물어도 서울시에는 한 번만 묻는다.
+        // 누가 이미 받는 중이면, 쓸 만한 지난 값이 있을 때는 기다리지 않고 그 값을 준다(서울시가 느려도 다른 요청이 묶이지 않게)
+        if (canServeWhileFetching(current)) {
+            if (!fetchLock.tryLock()) {
+                return current;
+            }
+        } else {
+            fetchLock.lock();
+        }
+        try {
             current = cached;
             if (isFresh(current)) {
                 return current;
@@ -195,11 +206,20 @@ public class RealtimeArrivalService {
             current = new Cached(now, trains);
             cached = current;
             return current;
+        } finally {
+            fetchLock.unlock();
         }
     }
 
     private boolean isFresh(Cached current) {
         return current != null && current.fetchedAt().plus(CACHE_TTL).isAfter(clock.instant());
+    }
+
+    // 받는 중에 대신 줄 수 있는 지난 값인가. 실패한 값이나 2분이 넘은 값은 주지 않고 새 값을 기다린다.
+    // 오래된 값을 주면 열차가 많이 움직인 뒤라 "오는 열차 없음"처럼 틀리게 보일 수 있다
+    private boolean canServeWhileFetching(Cached current) {
+        return current != null && current.trains() != null
+                && current.fetchedAt().plus(SERVE_OLD_FOR).isAfter(clock.instant());
     }
 
     // 하루 호출 수를 센다. 날짜(한국 시간)가 바뀌면 0부터 다시

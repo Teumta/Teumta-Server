@@ -4,6 +4,7 @@ import com.teumta.server.common.error.BusinessException;
 import com.teumta.server.common.error.ErrorCode;
 import com.teumta.server.realtime.RealtimeFixtures.MovableClock;
 import com.teumta.server.realtime.dto.RealtimeArrival;
+import com.teumta.server.realtime.dto.RealtimeArrivalsResponse;
 import com.teumta.server.station.StationService;
 import com.teumta.server.timetable.Direction;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,12 @@ import org.junit.jupiter.api.Test;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
@@ -168,6 +175,61 @@ class RealtimeArrivalServiceTest {
         clock.advance(Duration.ofSeconds(2));
         service.getArrivals(GURO, GUIL);
         assertThat(calls).hasValue(2);
+    }
+
+    @Test
+    void 받는_중이면_2분_안의_지난_값을_기다리지_않고_준다() throws Exception {
+        CountDownLatch fetching = new CountDownLatch(1);
+        CountDownLatch release = new CountDownLatch(1);
+        var service = service(950, true, () -> slowSecondCall(fetching, release));
+        service.getArrivals(GURO, null); // 19:28:10에 첫 값
+        clock.advance(Duration.ofSeconds(91));
+        try (ExecutorService pool = Executors.newSingleThreadExecutor()) {
+            // 다른 요청이 서울시에서 받는 중(두 번째 호출이 멈춰 있음)
+            Future<?> first = pool.submit(() -> service.getArrivals(GURO, null));
+            assertThat(fetching.await(5, TimeUnit.SECONDS)).isTrue();
+            // 이 요청은 기다리지 않고 91초 전 값을 바로 받는다
+            var meanwhile = service.getArrivals(INCHEON, null);
+            assertThat(meanwhile.fetchedAt().toInstant()).isEqualTo(AT_1928);
+            release.countDown();
+            first.get(5, TimeUnit.SECONDS);
+        }
+        assertThat(calls).hasValue(2);
+    }
+
+    @Test
+    void 지난_값이_2분을_넘었으면_기다렸다가_새_값을_같이_쓴다() throws Exception {
+        CountDownLatch fetching = new CountDownLatch(1);
+        CountDownLatch release = new CountDownLatch(1);
+        var service = service(950, true, () -> slowSecondCall(fetching, release));
+        service.getArrivals(GURO, null);
+        clock.advance(Duration.ofMinutes(3));
+        Instant refetchedAt = clock.instant();
+        try (ExecutorService pool = Executors.newFixedThreadPool(2)) {
+            Future<?> first = pool.submit(() -> service.getArrivals(GURO, null));
+            assertThat(fetching.await(5, TimeUnit.SECONDS)).isTrue();
+            // 3분 전 값은 주지 않고, 받는 중인 요청이 끝날 때까지 기다린다
+            Future<RealtimeArrivalsResponse> waiting = pool.submit(() -> service.getArrivals(INCHEON, null));
+            assertThatThrownBy(() -> waiting.get(300, TimeUnit.MILLISECONDS)).isInstanceOf(TimeoutException.class);
+            release.countDown();
+            first.get(5, TimeUnit.SECONDS);
+            // 기다린 요청은 서울시에 다시 묻지 않고 방금 받은 값을 같이 쓴다
+            assertThat(waiting.get(5, TimeUnit.SECONDS).fetchedAt().toInstant()).isEqualTo(refetchedAt);
+        }
+        assertThat(calls).hasValue(2);
+    }
+
+    // 첫 호출은 바로, 두 번째 호출은 release가 열릴 때까지 멈춘다(느린 서울시)
+    private List<SeoulTrainPosition> slowSecondCall(CountDownLatch fetching, CountDownLatch release) {
+        if (calls.get() == 2) {
+            fetching.countDown();
+            try {
+                release.await(5, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        return positions("positions-1928.json");
     }
 
     @Test
